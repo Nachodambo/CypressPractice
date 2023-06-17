@@ -17,6 +17,10 @@ describe("Search flights", () => {
     homePage.selectOW();
     homePage.selectOrigin(dataSearch.origin);
     homePage.selectDestination(dataSearch.destination);
+    homePage.selectMonthInCalendar(dataSearch.month);
+    homePage.pickFirstDayAvailable();
+    homePage.selectADTamaunt(dataSearch.ADTamount);
+    homePage.selectINFamaunt(dataSearch.INFamount);
   });
 
   after(() => {

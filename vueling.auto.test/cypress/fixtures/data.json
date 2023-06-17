@@ -1,5 +1,7 @@
 {
   "origin": "BCN",
   "destination": "ATH",
-  "month": "agosto"
+  "month": "agosto",
+  "ADTamount": "2",
+  "INFamount": "1"
 }
