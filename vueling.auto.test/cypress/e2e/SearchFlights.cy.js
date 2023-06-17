@@ -3,24 +3,37 @@ import { HomePage } from "../webpages/HomePage";
 
 describe("Search flights", () => {
   const homePage = new HomePage();
-  let dataSearch = {};
+  let flghtDetails = {};
 
   beforeEach(() => {
     cy.visit("/");
     cy.fixture("data").then((info) => {
-      dataSearch = info;
+      flghtDetails = info;
     });
   });
 
   it("TC0 - OW_BCN-ATH_2ADT1INF", () => {
     homePage.acceptCookies();
-    homePage.selectOW();
-    homePage.selectOrigin(dataSearch.origin);
-    homePage.selectDestination(dataSearch.destination);
-    homePage.selectMonthInCalendar(dataSearch.month);
+    //homePage.btnAcceptCookies().screenshot("aceptar cookies");
+    homePage.selectFlightType(flghtDetails.OW);
+    //cy.screenshot(`Select OW`);
+    homePage.selectOrigin(flghtDetails.origin);
+    //cy.screenshot(`Select Origin ${flghtDetails.origin}`);
+    homePage.selectDestination(flghtDetails.destination);
+    //cy.screenshot(`Select Destination ${flghtDetails.destination}`);
+    homePage.selectMonthInCalendar(flghtDetails.month);
     homePage.pickFirstDayAvailable();
-    homePage.selectADTamount(dataSearch.ADTamount);
-    homePage.selectINFamount(dataSearch.INFamount);
+    //cy.screenshot(`Select first avaliable day of August`);
+    homePage.selectADTamount(flghtDetails.ADTamount);
+    homePage.selectINFamount(flghtDetails.INFamount);
+    //cy.screenshot(`Select ${flghtDetails.ADTamount} ADT ${flghtDetails.ADTamount} INF`);
+    homePage.clickSearchFlight();
+  });
+
+  it("TC1 - RT_MAD-SQV_4ADT2INF", () => {
+    homePage.acceptCookies();
+    homePage.btnAcceptCookies().screenshot("aceptar cookies");
+    homePage.selectFlightType(flghtDetails.RT);
   });
 
   after(() => {
@@ -28,6 +41,6 @@ describe("Search flights", () => {
   });
 
   afterEach(() => {
-    //cy.screenshot(`Screenshot`);
+    cy.screenshot(`Screenshot`);
   });
 });

@@ -6,7 +6,7 @@ export class HomePage {
   // Elements
   btnAcceptCookies = () => cy.getId("onetrust-accept-btn-handler");
 
-  btnOW = () => cy.get(`[for="AvailabilitySearchInputSearchView_OneWay"]`);
+  btnFlightType = (type) => cy.get(`[for="AvailabilitySearchInputSearchView_${type}"]`);
 
   inputOrigin = () => cy.getId("AvailabilitySearchInputSearchView_TextBoxMarketOrigin1");
   inputDestination = () => cy.getId("AvailabilitySearchInputSearchView_TextBoxMarketDestination1");
@@ -23,14 +23,16 @@ export class HomePage {
   INFselector = (INFnumber) =>
     cy.get(`#AvailabilitySearchInputSearchView_DropDownListPassengerType_INFANT [value="${INFnumber}"]`);
 
+  btnSearchFlight = () => cy.getId(`AvailabilitySearchInputSearchView_btnClickToSearchNormal`);
+
   // Functions
 
   acceptCookies() {
     this.btnAcceptCookies().click();
   }
 
-  selectOW() {
-    this.btnOW().click();
+  selectFlightType(type) {
+    this.btnFlightType(type).click();
   }
 
   selectOrigin(origin) {
@@ -71,7 +73,11 @@ export class HomePage {
   }
 
   selectINFamount(amount) {
-    this.dropdownINF().select(amount);
+    this.dropdownINF().select(amount).should("have.value", amount);
     this.INFselector(amount).should("be.visible");
+  }
+
+  clickSearchFlight() {
+    this.btnSearchFlight().click();
   }
 }

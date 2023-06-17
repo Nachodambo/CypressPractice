@@ -3,5 +3,7 @@
   "destination": "ATH",
   "month": "agosto",
   "ADTamount": "2",
-  "INFamount": "1"
+  "INFamount": "1",
+  "OW": "OneWay",
+  "RT": "RoundTrip"
 }
