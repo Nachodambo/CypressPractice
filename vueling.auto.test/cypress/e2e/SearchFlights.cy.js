@@ -19,8 +19,8 @@ describe("Search flights", () => {
     homePage.selectDestination(dataSearch.destination);
     homePage.selectMonthInCalendar(dataSearch.month);
     homePage.pickFirstDayAvailable();
-    homePage.selectADTamaunt(dataSearch.ADTamount);
-    homePage.selectINFamaunt(dataSearch.INFamount);
+    homePage.selectADTamount(dataSearch.ADTamount);
+    homePage.selectINFamount(dataSearch.INFamount);
   });
 
   after(() => {

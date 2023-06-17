@@ -16,7 +16,10 @@ export class HomePage {
   btnNextCalendar = () => cy.get(`.ui-datepicker-next`);
   daysAvailable = () => cy.get(`[data-handler="selectDay"]`);
 
+  dropdownADT = () => cy.getId("adtSelectorDropdown");
   ADTselector = (ADTnumber) => cy.get(`#adtSelectorContainer [value="${ADTnumber}"]`);
+
+  dropdownINF = () => cy.getId(`AvailabilitySearchInputSearchView_DropDownListPassengerType_INFANT`);
   INFselector = (INFnumber) =>
     cy.get(`#AvailabilitySearchInputSearchView_DropDownListPassengerType_INFANT [value="${INFnumber}"]`);
 
@@ -54,16 +57,21 @@ export class HomePage {
           return this.selectMonthInCalendar(month);
         }
       });
+    this.monthTitleCalendar().first().should("have.text", month);
   }
   pickFirstDayAvailable() {
+    this.daysAvailable().should("be.visible");
     this.daysAvailable().first().click();
   }
 
-  selectADTamaunt(amaount) {
-    this.ADTselector(amaount).click();
+  selectADTamount(amount) {
+    this.dropdownADT().select(amount, { force: true });
+    this.ADTselector(amount).should("have.value", amount);
+    this.ADTselector(amount).should("be.visible");
   }
 
-  selectINFamaunt(amaunt) {
-    this.INFselector(amaunt).click();
+  selectINFamount(amount) {
+    this.dropdownINF().select(amount);
+    this.INFselector(amount).should("be.visible");
   }
 }
