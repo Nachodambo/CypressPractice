@@ -1,9 +1,10 @@
 {
   "origin": "BCN",
-  "destination": "ATH",
+  "destination": "MAD",
   "month": "agosto",
   "ADTamount": "2",
   "INFamount": "1",
   "OW": "OneWay",
-  "RT": "RoundTrip"
+  "RT": "RoundTrip",
+  "flightCompany": "iberia"
 }

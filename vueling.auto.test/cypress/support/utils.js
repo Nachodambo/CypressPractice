@@ -19,8 +19,7 @@ cy.getFlightDate = () => {
     flightDateMonth = flightDate.getMonth() + 1;
   }
   const flightDateYear = flightDate.getFullYear();
-  const flightDateFormatted =
-    flightDateDay + "/" + flightDateMonth + "/" + flightDateYear;
+  const flightDateFormatted = flightDateDay + "/" + flightDateMonth + "/" + flightDateYear;
   return flightDateFormatted;
 };
 
@@ -31,8 +30,7 @@ cy.getFalseDate = () => {
   const falseDateDay = falseDate.getDate();
   const falseDateMonth = falseDate.getMonth();
   const falseDateYear = falseDate.getFullYear();
-  const falseDateFormatted =
-    falseDateDay + "/" + falseDateMonth + "/" + falseDateYear;
+  const falseDateFormatted = falseDateDay + "/" + falseDateMonth + "/" + falseDateYear;
   return falseDateFormatted;
 };
 
@@ -100,9 +98,7 @@ cy.getRandomNumber = () => {
   var possible = "0123456789";
 
   for (var i = 0; i < 9; i++) {
-    randomNumber += possible.charAt(
-      Math.floor(Math.random() * possible.length)
-    );
+    randomNumber += possible.charAt(Math.floor(Math.random() * possible.length));
   }
 
   return randomNumber;
@@ -196,4 +192,18 @@ cy.getRandomString = (length) => {
   }
 
   return randomString;
+};
+
+cy.selectRandomFlight = (companyType) => {
+  let counter = 0;
+
+  this.chooseFlightCompany(companyType)
+    .each(($element) => {
+      counter++;
+    })
+    .then(() => {
+      cy.log(counter);
+      const random = Math.floor(Math.random() * counter);
+      this.chooseFlightCompany(companyType).eq(random).click();
+    });
 };

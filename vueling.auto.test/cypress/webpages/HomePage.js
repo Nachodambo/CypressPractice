@@ -12,7 +12,8 @@ export class HomePage {
   inputDestination = () => cy.getId("AvailabilitySearchInputSearchView_TextBoxMarketDestination1");
   selectorCity = (idCode) => cy.get(`[data-id-code="${idCode}"]`);
 
-  monthTitleCalendar = () => cy.get(`.ui-datepicker-month`);
+  monthTitleCalendar = () => cy.get(`.ui-datepicker-group-first .ui-datepicker-month`);
+  //.ui-datepicker-group-first .ui-datepicker-month also this way to get first position
   btnNextCalendar = () => cy.get(`.ui-datepicker-next`);
   daysAvailable = () => cy.get(`[data-handler="selectDay"]`);
 
@@ -48,22 +49,34 @@ export class HomePage {
   }
 
   selectMonthInCalendar(month) {
-    this.monthTitleCalendar().should("be.visible");
-
+    this.monthTitleCalendar() /*.first()*/
+      .should("be.visible");
     this.monthTitleCalendar()
-      .first()
+      /*.first()*/
       .invoke("text")
       .then((title) => {
         if (month !== title) {
+          // Cypress.on("uncaught:exception", (err, runnable) => {
+          //   return false;
+          // });
+
           this.btnNextCalendar().click();
-          return this.selectMonthInCalendar(month);
+          this.selectMonthInCalendar(month);
         }
       });
-    this.monthTitleCalendar().first().should("have.text", month);
+    this.monthTitleCalendar() /*.first()*/
+      .should("have.text", month);
   }
   pickFirstDayAvailable() {
     this.daysAvailable().should("be.visible");
     this.daysAvailable().first().click();
+  }
+
+  pickDayFromCalendar(numero) {
+    this.daysAvailable().should("be.visible");
+    this.daysAvailable()
+      .eq(numero - 1)
+      .click();
   }
 
   selectADTamount(amount) {

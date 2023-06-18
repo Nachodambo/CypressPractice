@@ -1,18 +1,27 @@
 import { it } from "mocha";
 import { HomePage } from "../webpages/HomePage";
+import { FlightPage } from "../webpages/FlightPage";
 
 describe("Search flights", () => {
   const homePage = new HomePage();
+  const flightPage = new FlightPage();
+
   let flghtDetails = {};
 
-  beforeEach(() => {
-    cy.visit("/");
+  before(() => {
     cy.fixture("data").then((info) => {
       flghtDetails = info;
     });
   });
 
-  xit("TC0 - OW_BCN-ATH_2ADT1INF", () => {
+  beforeEach(() => {
+    // Cypress.on("uncaught:exception", (err, runnable) => {
+    //   return false;
+    // });
+    cy.visit("/");
+  });
+
+  it("TC0 - OW_BCN-MAD_2ADT1INF", () => {
     homePage.acceptCookies();
     homePage.selectFlightType(flghtDetails.OW);
     homePage.selectOrigin(flghtDetails.origin);
@@ -22,9 +31,11 @@ describe("Search flights", () => {
     homePage.selectADTamount(flghtDetails.ADTamount);
     homePage.selectINFamount(flghtDetails.INFamount);
     homePage.clickSearchFlight();
+
+    flightPage.selectRandomFlight(flghtDetails.flightCompany);
   });
 
-  it("TC1 - RT_MAD-SVQ_4ADT2INF", () => {
+  xit("TC1 - RT_MAD-SVQ_4ADT2INF", () => {
     homePage.acceptCookies();
     homePage.selectFlightType(flghtDetails.RT);
     homePage.selectOrigin("MAD");
@@ -35,7 +46,7 @@ describe("Search flights", () => {
     homePage.pickDayFromCalendar(8);
     homePage.selectADTamount("4");
     homePage.selectINFamount("2");
-    //homePage.clickSearchFlight();
+    homePage.clickSearchFlight();
   });
 
   after(() => {
