@@ -194,16 +194,16 @@ cy.getRandomString = (length) => {
   return randomString;
 };
 
-cy.selectRandomFlight = (companyType) => {
+cy.selectRandomFlight = (flightElement) => {
   let counter = 0;
 
-  this.chooseFlightCompany(companyType)
+  flightElement
     .each(($element) => {
       counter++;
     })
     .then(() => {
       cy.log(counter);
       const random = Math.floor(Math.random() * counter);
-      this.chooseFlightCompany(companyType).eq(random).click();
+      flightElement.eq(random).click();
     });
 };

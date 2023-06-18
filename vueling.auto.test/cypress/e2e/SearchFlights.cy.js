@@ -1,10 +1,12 @@
 import { it } from "mocha";
 import { HomePage } from "../webpages/HomePage";
 import { FlightPage } from "../webpages/FlightPage";
+import { FarePage } from "../webpages/FarePage";
 
 describe("Search flights", () => {
   const homePage = new HomePage();
   const flightPage = new FlightPage();
+  const farePage = new FarePage();
 
   let flghtDetails = {};
 
@@ -33,6 +35,8 @@ describe("Search flights", () => {
     homePage.clickSearchFlight();
 
     flightPage.selectRandomFlight(flghtDetails.flightCompany);
+
+    farePage.chooseFareType(flghtDetails.fareType);
   });
 
   xit("TC1 - RT_MAD-SVQ_4ADT2INF", () => {

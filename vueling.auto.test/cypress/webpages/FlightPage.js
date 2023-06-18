@@ -4,10 +4,14 @@ import "cypress-xpath/src/index";
 
 export class FlightPage {
   //elementos
+
   chooseFlightCompany = (companyType) => cy.get(`[class^=vy-icon-${companyType}]`);
+  flightCardsBody = () => cy.getId("outboundFlightCardsContainer");
 
   //funciones
+
   selectRandomFlight(companyType) {
+    this.flightCardsBody().should("be.visible");
     let counter = 0;
 
     this.chooseFlightCompany(companyType)

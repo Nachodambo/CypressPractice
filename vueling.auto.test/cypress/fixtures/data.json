@@ -6,5 +6,6 @@
   "INFamount": "1",
   "OW": "OneWay",
   "RT": "RoundTrip",
-  "flightCompany": "iberia"
+  "flightCompany": "iberia",
+  "fareType": "optima"
 }
