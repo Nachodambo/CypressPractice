@@ -4,25 +4,23 @@ import "cypress-xpath/src/index";
 
 export class HomePage {
   // Elements
+
   btnAcceptCookies = () => cy.getId("onetrust-accept-btn-handler");
 
   btnFlightType = (type) => cy.get(`[for="AvailabilitySearchInputSearchView_${type}"]`);
-
   inputOrigin = () => cy.getId("AvailabilitySearchInputSearchView_TextBoxMarketOrigin1");
   inputDestination = () => cy.getId("AvailabilitySearchInputSearchView_TextBoxMarketDestination1");
   selectorCity = (idCode) => cy.get(`[data-id-code="${idCode}"]`);
 
-  monthTitleCalendar = () => cy.get(`.ui-datepicker-group-first .ui-datepicker-month`);
   //.ui-datepicker-group-first .ui-datepicker-month also this way to get first position
+  monthTitleCalendar = () => cy.get(`.ui-datepicker-group-first .ui-datepicker-month`);
   btnNextCalendar = () => cy.get(`.ui-datepicker-next`);
   daysAvailable = () => cy.get(`[data-handler="selectDay"]`);
 
   dropdownADT = () => cy.getId("adtSelectorDropdown");
   ADTselector = (ADTnumber) => cy.get(`#adtSelectorContainer [value="${ADTnumber}"]`);
-
   dropdownINF = () => cy.getId(`AvailabilitySearchInputSearchView_DropDownListPassengerType_INFANT`);
-  INFselector = (INFnumber) =>
-    cy.get(`#AvailabilitySearchInputSearchView_DropDownListPassengerType_INFANT [value="${INFnumber}"]`);
+  INFselector = (INFnumber) => cy.get(`#AvailabilitySearchInputSearchView_DropDownListPassengerType_INFANT [value="${INFnumber}"]`);
 
   btnSearchFlight = () => cy.getId(`AvailabilitySearchInputSearchView_btnClickToSearchNormal`);
 
@@ -72,10 +70,10 @@ export class HomePage {
     this.daysAvailable().first().click();
   }
 
-  pickDayFromCalendar(numero) {
+  pickDayFromCalendar(num) {
     this.daysAvailable().should("be.visible");
     this.daysAvailable()
-      .eq(numero - 1)
+      .eq(num - 1)
       .click();
   }
 

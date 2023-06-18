@@ -6,7 +6,7 @@ module.exports = defineConfig({
   animationDistanceThreshold: 30,
   blockHosts: null,
   chromeWebSecurity: false,
-  defaultCommandTimeout: 4000,
+  defaultCommandTimeout: 5000,
   env: {},
   execTimeout: 60000,
   fileServerFolder: "",
