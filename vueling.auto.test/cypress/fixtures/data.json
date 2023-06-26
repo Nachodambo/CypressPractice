@@ -2,10 +2,11 @@
   "origin": "BCN",
   "destination": "MAD",
   "month": "agosto",
-  "ADTamount": "2",
+  "ADTamount": "3",
   "INFamount": "1",
   "OW": "OneWay",
   "RT": "RoundTrip",
-  "flightCompany": "iberia",
-  "fareType": "optima"
+  "flightCompany": "vueling",
+  "fareType": "optima",
+  "countryOfResidence": "ES"
 }

@@ -39,6 +39,7 @@ export class HomePage {
     this.inputOrigin().clear().type(origin);
     this.selectorCity(origin).should("be.visible").click();
   }
+
   selectDestination(destination) {
     this.inputDestination().click();
     this.inputDestination().clear().type(destination);
@@ -57,7 +58,6 @@ export class HomePage {
           // Cypress.on("uncaught:exception", (err, runnable) => {
           //   return false;
           // });
-
           this.btnNextCalendar().click();
           this.selectMonthInCalendar(month);
         }
@@ -65,6 +65,7 @@ export class HomePage {
     this.monthTitleCalendar() /*.first()*/
       .should("have.text", month);
   }
+
   pickFirstDayAvailable() {
     this.daysAvailable().should("be.visible");
     this.daysAvailable().first().click();

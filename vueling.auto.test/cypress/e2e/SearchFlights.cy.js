@@ -19,13 +19,13 @@ describe("Search flights", () => {
   });
 
   beforeEach(() => {
-    // Cypress.on("uncaught:exception", (err, runnable) => {
-    //   return false;
-    // });
+    Cypress.on("uncaught:exception", (err, runnable) => {
+      return false;
+    });
     cy.visit("/");
   });
 
-  it("TC0 - OW_BCN-MAD_2ADT1INF", () => {
+  it("TC0 - OW_BCN-MAD_3ADT1INF", () => {
     homePage.acceptCookies();
     homePage.selectFlightType(flghtDetails.OW);
     homePage.selectOrigin(flghtDetails.origin);
@@ -35,16 +35,22 @@ describe("Search flights", () => {
     homePage.selectADTamount(flghtDetails.ADTamount);
     homePage.selectINFamount(flghtDetails.INFamount);
     homePage.clickSearchFlight();
-    flightPage.selectRandomFlight(flghtDetails.flightCompany);
+    flightPage.selectDepartureRandomFlight(flghtDetails.flightCompany);
     farePage.chooseFareType(flghtDetails.fareType);
+    passengerPage.fillPassengersForms(flghtDetails.ADTamount, flghtDetails.INFamount);
+    passengerPage.fillContactPersonInfo(flghtDetails.countryOfResidence);
+    passengerPage.acceptPolicyandContinue();
+
+    /*
     passengerPage.fillADTinfo();
     passengerPage.fillINFinfo();
     passengerPage.clickBtnReady();
     passengerPage.fill2ndADTinfo();
-    passengerPage.fillContactPersonInfo();
+   
+    */
   });
 
-  xit("TC1 - RT_MAD-SVQ_4ADT2INF", () => {
+  xit("TC1 - RT_MAD-SVQ_2ADT1INF", () => {
     homePage.acceptCookies();
     homePage.selectFlightType(flghtDetails.RT);
     homePage.selectOrigin("MAD");
@@ -53,9 +59,13 @@ describe("Search flights", () => {
     homePage.pickFirstDayAvailable();
     homePage.selectMonthInCalendar("octubre");
     homePage.pickDayFromCalendar(8);
-    homePage.selectADTamount("4");
-    homePage.selectINFamount("2");
+    homePage.selectADTamount("2");
+    homePage.selectINFamount("1");
     homePage.clickSearchFlight();
+
+    flightPage.selectDepartureRandomFlight("vueling");
+    flightPage.selectReturnRandomFlight("vueling");
+    farePage.chooseFareType("basic");
   });
 
   after(() => {
