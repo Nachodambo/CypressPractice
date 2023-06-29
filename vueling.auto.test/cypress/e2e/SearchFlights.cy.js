@@ -3,12 +3,14 @@ import { HomePage } from "../webpages/HomePage";
 import { FlightPage } from "../webpages/FlightPage";
 import { FarePage } from "../webpages/FarePage";
 import { PassengerPage } from "../webpages/PassengerPage";
+import { SeatPage } from "../webpages/SeatPage";
 
 describe("Search flights", () => {
   const homePage = new HomePage();
   const flightPage = new FlightPage();
   const farePage = new FarePage();
   const passengerPage = new PassengerPage();
+  const seatPage = new SeatPage();
 
   let flghtDetails = {};
 

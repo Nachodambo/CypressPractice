@@ -17,6 +17,7 @@ export class HomePage {
   btnNextCalendar = () => cy.get(`.ui-datepicker-next`);
   daysAvailable = () => cy.get(`[data-handler="selectDay"]`);
 
+  btnDropdownADT = () => cy.getId("DropDownListPassengerType_ADT_PLUS");
   dropdownADT = () => cy.getId("adtSelectorDropdown");
   ADTselector = (ADTnumber) => cy.get(`#adtSelectorContainer [value="${ADTnumber}"]`);
   dropdownINF = () => cy.getId(`AvailabilitySearchInputSearchView_DropDownListPassengerType_INFANT`);
@@ -79,7 +80,8 @@ export class HomePage {
   }
 
   selectADTamount(amount) {
-    this.dropdownADT().select(amount, { force: true });
+    this.btnDropdownADT().click();
+    this.dropdownADT().select(amount);
     this.ADTselector(amount).should("have.value", amount);
     this.ADTselector(amount).should("be.visible");
   }

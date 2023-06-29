@@ -55,25 +55,36 @@ export class PassengerPage {
     this.passengerWithParameters.passengerPageTitle().should("be.visible");
     for (let i = 0; i < ADTs; i++) {
       this.passengerWithParameters.cadrADT(i + 1).should("be.visible");
-      this.passengerWithParameters.inputADTName(i + 1).type(cy.getRandomFirstName());
-      this.passengerWithParameters.inputADTLastName(i + 1).type(cy.getRandomLastName());
+      this.passengerWithParameters
+        .inputADTName(i + 1)
+        .clear()
+        .type(cy.getRandomFirstName());
+      this.passengerWithParameters
+        .inputADTLastName(i + 1)
+        .clear()
+        .type(cy.getRandomLastName());
       if (INFs > 0) {
         let year = new Date().getFullYear(); //to get the actual year
-        this.passengerWithParameters.inputINFname(i).type(cy.getRandomFirstName());
-        this.passengerWithParameters.inputINFlastName(i).type(cy.getRandomLastName());
-        this.passengerWithParameters.inputDOB_INF(i + 1).type(`01/01/${year}`);
+        this.passengerWithParameters.inputINFname(i).clear().type(cy.getRandomFirstName());
+        this.passengerWithParameters.inputINFlastName(i).clear().type(cy.getRandomLastName());
+        this.passengerWithParameters
+          .inputDOB_INF(i + 1)
+          .clear()
+          .type(`01/01/${year}`);
       }
       INFs -= 1;
       this.passengerWithParameters.btnReady(i + 1).click();
     }
   }
 
+  /*
   fillINFinfo() {
     let year = new Date().getFullYear();
-    this.passengerBox.inputINFname().type(cy.getRandomFirstName());
-    this.passengerBox.inputINFlastName().type(cy.getRandomLastName());
-    this.passengerBox.inputDOB_INF().type(`01/01/${year}`);
+    this.passengerBox.inputINFname().clear().type(cy.getRandomFirstName());
+    this.passengerBox.inputINFlastName().clear().type(cy.getRandomLastName());
+    this.passengerBox.inputDOB_INF().clear().type(`01/01/${year}`);
   }
+  */
 
   clickBtnReady() {
     this.passengerBox.btnReady().click();
@@ -89,12 +100,15 @@ export class PassengerPage {
 
   fillContactPersonInfo(country) {
     this.contactPersonBox.cardContactPerson().should("be.visible");
-    this.contactPersonBox.inputName().type(cy.getRandomFirstName());
-    this.contactPersonBox.inputLastName().type(cy.getRandomLastName());
+    this.contactPersonBox.inputName().clear().type(cy.getRandomFirstName());
+    this.contactPersonBox.inputLastName().clear().type(cy.getRandomLastName());
     this.contactPersonBox.dropDownCountry().select(country);
     this.contactPersonBox.dropDownCountry().should("have.value", country);
-    this.contactPersonBox.inputPhone().type(cy.getRandomNumber());
-    this.contactPersonBox.inputEmail().type(cy.getRandomString(6) + "@gmail.com");
+    this.contactPersonBox.inputPhone().clear().type(cy.getRandomNumber());
+    this.contactPersonBox
+      .inputEmail()
+      .clear()
+      .type(cy.getRandomString(6) + "@gmail.com");
   }
 
   acceptPolicyandContinue() {

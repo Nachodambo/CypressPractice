@@ -1,4 +1,5 @@
 /// <reference types='cypress-xpath' />
+/// <reference types="cypress"/>
 
 import "cypress-xpath/src/index";
 
